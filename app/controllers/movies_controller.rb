@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
      redirect_to movies_path :sort => session[:sort], :ratings => session[:ratings]
     end
     @displayed_ratings = session[:ratings].keys
-    @movies = Movie.where(rating: displayed_ratings).order(session[:sort])
+    @movies = Movie.where(rating: @displayed_ratings).order(session[:sort])
   end
 
   def new
