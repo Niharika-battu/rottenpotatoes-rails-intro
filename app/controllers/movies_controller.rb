@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     session[:sort] = params[:sort] if params[:sort]
     session[:sort] = 'id' if !session[:sort]
     session[:ratings] = params[:ratings] if params[:ratings]
+    session[:ratings] = Hash[@all_ratings.map {|rating| [rating, rating]}] if !session[:ratings]
     if (!params[:sort] || !params[:ratings])
      flash.keep
      redirect_to movies_path :sort => session[:sort], :ratings => session[:ratings]
